@@ -1,7 +1,7 @@
 # app.py
 from flask import Flask
 from flask_migrate import Migrate
-from extensiones import db, jwt  # Importamos db y jwt desde extensions.py
+from extensiones import db, jwt  # Importamos db y jwt desde extensiones.py
 from rutas import main_bp
 
 app = Flask(__name__)
