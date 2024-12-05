@@ -1,10 +1,12 @@
 # app.py
+from flask_cors import CORS #habria que instalar " pip install flask-cors " 
 from flask import Flask
 from flask_migrate import Migrate
 from extensiones import db, jwt  # Importamos db y jwt desde extensiones.py
 from rutas import main_bp
 
 app = Flask(__name__)
+CORS(app)
 
 # Configuración de base de datos y JWT
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://usuario:contraseña@localhost/sistema_reservas'

@@ -1,21 +1,29 @@
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import create_access_token
 from extensiones import db
 from modelos.reserva import Reserva
 
-reservar_cancha_bp = Blueprint('reservar_cancha_bp', __name__)
+reservas_cancha_bp = Blueprint('reservas_cancha_bp', __name__)
 
-@reservar_cancha_bp.route('/', methods=['POST'])
-@jwt_required()
-def reservar_cancha():
-    user_id = get_jwt_identity()
+@reservas_cancha_bp.route('/reservar', methods=['POST'])
+def realizar_reserva():
     data = request.get_json()
-    nueva_reserva = Reserva(
-        usuario_id=user_id,
-        cancha_id=data['cancha_id'],
-        fecha_hora=data['fecha_hora'],
-        estado="reservada"
-    )
+    nombre = data.get('nombre')
+    telefono = data.get('telefono')
+    cancha_id = data.get('cancha_id')
+    fecha_hora = data.get('fecha_hora')
+
+    # Verificar disponibilidad de la cancha
+    reserva_existente = Reserva.query.filter_by(cancha_id=cancha_id, fecha_hora=fecha_hora).first()
+    if reserva_existente:
+        return jsonify({"msg": "La cancha ya está reservada para esa fecha y hora."}), 400
+
+    # Crear la reserva
+    nueva_reserva = Reserva(nombre=nombre, telefono=telefono, cancha_id=cancha_id, fecha_hora=fecha_hora)
     db.session.add(nueva_reserva)
     db.session.commit()
-    return jsonify({"msg": "Reserva realizada exitosamente", "reserva_id": nueva_reserva.id}), 201
+
+    # Crear un token JWT
+    token = create_access_token(identity={'nombre': nombre, 'telefono': telefono})
+
+    return jsonify({"msg": "Reserva realizada con éxito", "token": token}), 201

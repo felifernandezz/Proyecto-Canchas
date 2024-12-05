@@ -7,7 +7,8 @@ class Cancha(db.Model):
     tipo_cancha = db.Column(db.String(10), nullable=False)  # Ejemplo: "5", "7", "8", "9", "11"
     cantidad = db.Column(db.Integer, nullable=False)
     establecimiento_id = db.Column(db.Integer, db.ForeignKey('establecimientos.id'), nullable=False)
-
+    precio = db.Column(db.Float, nullable=False)  # Precio por hora o unidad de tiempo
+    
     reservas = db.relationship('Reserva', backref='cancha', lazy=True)
 
 
