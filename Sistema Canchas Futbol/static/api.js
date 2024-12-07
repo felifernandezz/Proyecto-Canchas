@@ -1,21 +1,17 @@
 import axios from "axios";
 
-// Función para editar una cancha
-export const editCancha = async (id, data) => {
-    try {
-        const response = await axios.put(`/api/canchas/${id}`, data); // Envía la solicitud PUT
-        return response.data; // Devuelve los datos de la cancha actualizada
-    } catch (error) {
-        console.error("Error al editar la cancha", error);
+export const fetchCanchas = async () => {
+    return await axios.get("/api/canchas");
+};
+
+export const saveCancha = async (data) => {
+    if (data.id) {
+        return await axios.put(`/api/canchas/${data.id}`, data);
+    } else {
+        return await axios.post("/api/canchas", data);
     }
 };
 
-// Función para eliminar una cancha
 export const deleteCancha = async (id) => {
-    try {
-        const response = await axios.delete(`/api/canchas/${id}`); // Envía la solicitud DELETE
-        return response.data; // Devuelve el estado de la eliminación
-    } catch (error) {
-        console.error("Error al eliminar la cancha", error);
-    }
+    return await axios.delete(`/api/canchas/${id}`);
 };
