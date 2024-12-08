@@ -1,20 +1,17 @@
-*{
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/*body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f0f0f0;
-    color:white;
 }*/
 
 body {
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: #f0f0f0;
+    color: rgb(255, 255, 255);
 }
 
 header {
@@ -26,36 +23,45 @@ header {
     padding: 15px 30px;
 }
 
-header .menu{
+header .menu {
     font-size: 24px;
     cursor: pointer;
 }
 
-header .reservation-link{
+header .reservation-link {
     font-size: 14px;
     text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    color: #ffffff;
 }
 
-main{
-    background-color: #3b3b3b;
+main {
+    background-image: url('field-grass-markup-lawn-wallpaper-preview.jpeg');
+    background-size: cover; /*Hace que el fondo cubra toda la seccion*/
+    background-position: center; 
+    background-repeat: no-repeat; /*evita que la imagen se repita*/
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 20px;
-    gap: 20px;
+    padding: 5%; /*Incrementa el relleno*/
+    gap: 20%; /*Incrementa el espacio entre columnas*/
+    /* border-radius: 10px; Redondea las esquinas*/
 }
 
-.title{
+.title {
     text-transform: uppercase;
     font-size: 36px;
-    color: #0df84083;
-}
-.left-section{
-    display: flex;
-    flex-direction: column;
-    gap: 20;
+    color: #ffffff;
 }
 
-.left-section .button{
+.left-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+}
+
+.left-section .button {
     background-color: #606060;
     color: white;
     padding: 10px 15px;
@@ -66,18 +72,25 @@ main{
     width: fit-content;
 }
 
-.right-section{
-    background-color: #a0a0a0;
-    width: 100%;
-    height: 200px
+.left-section .button:hover {
+    background-color: #505050;
 }
 
-/*footer{
-    background-color: #d3d3d3;
-    padding: 20px;
-    text-align: center;
-    font-size: 16px;
-}*/
+.right-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5f5a5a;
+    width: 100%;
+    height: auto; /*ajusta dinamicamente la altura*/
+    padding: 20px; /*Aniade un relleno alrededor de la imagen*/
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 footer {
     background-color: #333;
@@ -87,18 +100,19 @@ footer {
     margin-top: auto;
 }
 
-.footer-content{
+.footer-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-.footer-left, .footer right{
+.footer-left,
+.footer-right {
     background-color: #a0a0a0;
     padding: 10px;
 }
 
-.footer-left .logo{
+.footer-left .logo {
     width: 50px;
     height: 50px;
     background-color: #606060;
