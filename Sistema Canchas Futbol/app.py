@@ -1,6 +1,6 @@
 # app.py
 from flask_cors import CORS #habria que instalar " pip install flask-cors " 
-from flask import Flask
+from flask import Flask,render_template
 from flask_migrate import Migrate
 from extensiones import db, jwt  # Importamos db y jwt desde extensiones.py
 from rutas import main_bp
@@ -19,6 +19,10 @@ jwt.init_app(app)
 
 # Registrar los blueprints
 app.register_blueprint(main_bp)
+
+@app.route('/reservas', methods=['GET'])
+def mostrar_reservas():
+    return render_template('reservas.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
