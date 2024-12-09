@@ -3,6 +3,7 @@ from flask_jwt_extended import create_access_token
 from extensiones import db
 from modelos.reserva import Reserva
 from modelos.horarios import Horarios
+from datetime import datetime, timedelta
 
 reservas_cancha_bp = Blueprint('reservas_cancha_bp', __name__)
 
@@ -33,8 +34,7 @@ def realizar_reserva():
 def horarios_disponibles():
     from flask import Blueprint, jsonify, request
 from datetime import datetime, timedelta
-from modelos.horarios import Horarios
-from extensiones import db
+
 
 reservas_cancha_bp = Blueprint('reservas_cancha_bp', __name__)
 
