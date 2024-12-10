@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="calendario_reserva.css">
+  <title>Calendario reserva</title>
+</head>
+<body>
+
+<h1 class="title">Calendario</h1>
+
+<div class="calendar">
+  <div class="calendar__info">
+    <div class="calendar__prev" id="prev-month">&#9664;</div> 
+    <div class="calendar__month" id="month"></div>
+    <div class="calendar__year" id="year"></div>
+    <div class="calendar__next" id="next-month">&#9654;</div>
+  </div>
+
+  <div class="calendar__week">
+    <div class="calendar__day calendar__item">Lun</div>
+    <div class="calendar__day calendar__item">Mar</div>
+    <div class="calendar__day calendar__item">Mie</div>
+    <div class="calendar__day calendar__item">Jue</div>
+    <div class="calendar__day calendar__item">Vie</div>
+    <div class="calendar__day calendar__item">Sab</div>
+    <div class="calendar__day calendar__item">Dom</div>
+  </div>
+
+  <div class="calendar__dates" id="dates"></div>
+</div>
+
+<script src="Calendario.js"></script>
+</body>
+</html>
