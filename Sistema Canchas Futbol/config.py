@@ -8,7 +8,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.getenv(
         'DATABASE_URL',
-        'mysql://root:reservas@127.0.0.1:3306/sistema_reservas'
+        'mysql://root:Bahiachivo124@127.0.0.1:3306/sistema_reservas'
     )
 
 class ProductionConfig(Config):
