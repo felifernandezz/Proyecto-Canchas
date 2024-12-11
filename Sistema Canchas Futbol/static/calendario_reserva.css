@@ -1,70 +1,160 @@
+/* General Reset */
 * {
-    box-sizing: border-box;
-  }
-  
-  body {
-    background: linear-gradient(to right, mediumpurple, lightsalmon);
-  }
-  
-  .title {
-    text-align: center;
-    color: black;
-  }
-  
-  .calendar {
-    background: beige;
-    width: 80%;
-    max-width: 600px;
-    margin: 1em auto;
-    padding: 0.5em 0;
-  }
-  
-  .calendar__info {
-    display: flex;
-    align-items: center;
-    padding: 0 2em;
-    font-size: 1.2em;
-    text-transform: uppercase;
-  }
-  
-  .calendar__prev,
-  .calendar__next {
-    color: yellow;
-    cursor: pointer;
-    font-size: 1.3em;
-  }
-  
-  .calendar__prev {
-    margin-right: auto;
-  }
-  
-  .calendar__next {
-    margin-left: auto;
-  }
-  
-  .calendar__week, .calendar__dates {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 10px;
-  }
-  
-  .calendar__month, .calendar__year{
-    padding: .5em 1em;
-  }
-  
-  .calendar{
-    text-align: center;
-    line-height: 2;
-  }
-  
-  .calendar__today{
-    background: lightcoral;
-    color: white;
-    width: 50%;
-    border-radius: 50%;
-    margin: auto;
-  }
-  
-  .calendar__last-days{
-    opacity: .3;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background: #fff;
+  color: #333;
+  border-radius: 15px;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.step {
+  margin: 20px 0;
+}
+
+.step h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* Botones de Cancha */
+.cancha-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cancha-controls button {
+  background: #ffcc00;
+  color: #333;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.cancha-controls button:hover {
+  background: #ffaa00;
+}
+
+.cancha-number {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Calendario */
+.calendar {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+}
+
+.calendar__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.calendar__week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.calendar__dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar__date {
+  background: #ddd;
+  color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.calendar__date:hover {
+  background: #bbb;
+}
+
+.calendar__today {
+  background: #ffa500;
+  color: white;
+}
+
+.calendar__inactive {
+  background: #e0e0e0;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Formulario */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form button {
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form button:hover {
+  background-color: #555;
+}
+
+/* Sticky Notes */
+.note {
+  background: #fffbcc;
+  color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  text-align: left;
+  margin-top: 10px;
+}

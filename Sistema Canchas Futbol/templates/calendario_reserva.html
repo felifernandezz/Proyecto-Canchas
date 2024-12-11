@@ -4,33 +4,61 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="calendario_reserva.css">
-  <title>Calendario reserva</title>
+  <title>Reserva de Cancha</title>
 </head>
 <body>
+  <header class="header">
+    <div class="menu-icon">&#9776;</div>
+    <div class="logo">Logo</div>
+    <div class="make-reservation">Hacer reserva</div>
+  </header>
 
-<h1 class="title">Calendario</h1>
+  <main class="container">
+    <h1>Haz tu reserva</h1>
 
-<div class="calendar">
-  <div class="calendar__info">
-    <div class="calendar__prev" id="prev-month">&#9664;</div> 
-    <div class="calendar__month" id="month"></div>
-    <div class="calendar__year" id="year"></div>
-    <div class="calendar__next" id="next-month">&#9654;</div>
-  </div>
+    <section class="step">
+      <h2>1. Cancha</h2>
+      <div class="court-selection">
+        <button class="nav-button">&#9664;</button>
+        <span class="court-number">7</span>
+        <button class="nav-button">&#9654;</button>
+      </div>
+    </section>
 
-  <div class="calendar__week">
-    <div class="calendar__day calendar__item">Lun</div>
-    <div class="calendar__day calendar__item">Mar</div>
-    <div class="calendar__day calendar__item">Mie</div>
-    <div class="calendar__day calendar__item">Jue</div>
-    <div class="calendar__day calendar__item">Vie</div>
-    <div class="calendar__day calendar__item">Sab</div>
-    <div class="calendar__day calendar__item">Dom</div>
-  </div>
+    <section class="step">
+      <h2>2. Selecciona la fecha</h2>
+      <div class="calendar">
+        <!-- Calendar here -->
+        <div class="calendar__info">
+          <div class="calendar__prev" id="prev-month">&#9664;</div>
+          <div class="calendar__month" id="month"></div>
+          <div class="calendar__year" id="year"></div>
+          <div class="calendar__next" id="next-month">&#9654;</div>
+        </div>
+        <div class="calendar__week">
+          <div class="calendar__day">Lun</div>
+          <div class="calendar__day">Mar</div>
+          <div class="calendar__day">Mie</div>
+          <div class="calendar__day">Jue</div>
+          <div class="calendar__day">Vie</div>
+          <div class="calendar__day">Sab</div>
+          <div class="calendar__day">Dom</div>
+        </div>
+        <div class="calendar__dates" id="dates"></div>
+      </div>
+    </section>
 
-  <div class="calendar__dates" id="dates"></div>
-</div>
+    <section class="step">
+      <h2>3. Datos del cliente</h2>
+      <form class="client-data">
+        <input type="text" placeholder="Nombre">
+        <input type="text" placeholder="Apellido">
+        <input type="tel" placeholder="Teléfono">
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
 
-<script src="Calendario.js"></script>
+  <script src="Calendario.js"></script>
 </body>
 </html>
