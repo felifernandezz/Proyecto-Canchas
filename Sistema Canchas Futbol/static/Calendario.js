@@ -90,27 +90,50 @@ document.querySelectorAll('.calendar__date').forEach(day => {
     day.addEventListener('click', () => openPopup(day.textContent));
   });
 
-function openPopup(day) {
+  async function openPopup(day) {
     const popup = document.getElementById('popup');
     const timeSlots = document.getElementById('time-slots');
-    timeSlots.innerHTML = ''; //Limpia los horarios previos
+    timeSlots.innerHTML = ''; // Limpia los horarios previos
 
-    //Genera los horarios desde las 12:00 hasta 22:00
-    for (let hour = 12; hour <= 22; hour++){
-        const timeButton = document.createElement('button');
-        timeButton.textContent = `${hour}:00`;
-        timeButton.addEventListener('click', () => {
-            alert(`Reserva confirmada para el dia ${day} a las ${hour}:00`);
-            closePopup();
+    // ID de la cancha (puedes adaptarlo según tu lógica)
+    const canchaId = 1; // Ejemplo: id fijo o dinámico
+    const fecha = `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}-${day.padStart(2, '0')}`;
+
+    // Obtén los horarios disponibles desde la API
+    const horarios = await obtenerHorariosDisponibles(canchaId, fecha);
+
+    if (horarios.length === 0) {
+        timeSlots.innerHTML = '<p>No hay horarios disponibles para esta fecha.</p>';
+    } else {
+        horarios.forEach(horario => {
+            const timeButton = document.createElement('button');
+            timeButton.textContent = `${horario.hora_inicio} - ${horario.hora_fin}`;
+            timeButton.addEventListener('click', () => {
+                alert(`Reserva confirmada para el día ${day} a las ${horario.hora_inicio}`);
+                closePopup();
+            });
+            timeSlots.appendChild(timeButton);
         });
-        timeSlots.appendChild(timeButton);
     }
     popup.classList.remove('hidden');
 }
 
-document.getElementById('close-popup').addEventListener('click', closePopup);
-
 function closePopup(){
     const popup = document.getElementById('popup');
     popup.classList.add('hidden');
+}
+
+
+async function obtenerHorariosDisponibles(cancha_id, fetchCanchas) {
+    try {
+        const response = await fetch(`http://tu-servidor.com/horarios-disponibles?cancha_id=${canchaId}&fecha=${fecha}`);
+        if (!response.ok){
+            throw new Error('Erro al obtener los horarios disponibles');
+        }
+        const horarios = await response.json();
+        return horarios;
+    } catch (error){
+        console.error(error);
+        return[];
+    }
 }
