@@ -1,7 +1,4 @@
-const months = [
-  'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-  'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-];
+let monthNames = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
 let currentDate = new Date();
 let currentDay = currentDate.getDate();
@@ -85,4 +82,35 @@ function setNewDate(){
     month.textContent = monthNames[monthNumber];
     year.textContent = currentYear.toString(); 
     writeMonth(monthNumber);
+}
+
+//popup funct
+
+document.querySelectorAll('.calendar__date').forEach(day => {
+    day.addEventListener('click', () => openPopup(day.textContent));
+  });
+
+function openPopup(day) {
+    const popup = document.getElementById('popup');
+    const timeSlots = document.getElementById('time-slots');
+    timeSlots.innerHTML = ''; //Limpia los horarios previos
+
+    //Genera los horarios desde las 12:00 hasta 22:00
+    for (let hour = 12; hour <= 22; hour++){
+        const timeButton = document.createElement('button');
+        timeButton.textContent = `${hour}:00`;
+        timeButton.addEventListener('click', () => {
+            alert(`Reserva confirmada para el dia ${day} a las ${hour}:00`);
+            closePopup();
+        });
+        timeSlots.appendChild(timeButton);
+    }
+    popup.classList.remove('hidden');
+}
+
+document.getElementById('close-popup').addEventListener('click', closePopup);
+
+function closePopup(){
+    const popup = document.getElementById('popup');
+    popup.classList.add('hidden');
 }

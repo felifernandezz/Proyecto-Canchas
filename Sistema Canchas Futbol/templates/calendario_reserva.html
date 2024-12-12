@@ -9,19 +9,28 @@
 <body>
   <header class="header">
     <div class="menu-icon">&#9776;</div>
-    <div class="logo">Logo</div>
-    <div class="make-reservation">Hacer reserva</div>
+    <div class="make-reservation">Hace tu reserva</div>
   </header>
 
   <main class="container">
     <h1>Haz tu reserva</h1>
 
+    <div id="popup" class="popup hideen">
+      <div class="popup-content">
+        <h3>Selecciona un horario</h3>
+        <div id="time-slots" class="time-slots"></div>
+        <button id="close-popup" class="close-popup">Cerrar</button>
+      </div>
+    </div>
+
     <section class="step">
       <h2>1. Cancha</h2>
       <div class="court-selection">
-        <button class="nav-button">&#9664;</button>
-        <span class="court-number">7</span>
-        <button class="nav-button">&#9654;</button>
+        <button class="court-button">5</button>
+        <button class="court-button">7</button>
+        <button class="court-button">8</button>
+        <button class="court-button">9</button>
+        <button class="court-button">11</button>
       </div>
     </section>
 
