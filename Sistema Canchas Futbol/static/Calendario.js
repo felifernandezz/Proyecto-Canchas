@@ -137,3 +137,95 @@ async function obtenerHorariosDisponibles(cancha_id, fetchCanchas) {
         return[];
     }
 }
+
+function cargarHorarios(fechaSeleccionada){
+    //llama a la api del servidor flask
+    fetch(`/api/horarios/${fechaSeleccionada}`)
+        .then(response => {
+            if (!response.ok){
+                throw new Error('Error al obtener los horarios');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const timeSlots = document.getElementById('time-slots'); //contenedor de horarios
+            timeSlots.innerHTML = ''; //limpia los horarios anteriores
+        
+            //agrega cada horario disponible como un boton
+            data.forEach(hora => {
+                const btn = document.createElement('button');
+                btn.textContent = hora;
+                btn.classList.add('time-button');
+                timeSlots.appendChild(btn);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+//evento para llamar a la funcion cunado se seleeccione una fecha
+const calendarDates = document.querySelectorAll('.calendar__dates div');
+calendarDates.forEach(date => {
+    date.addEventListener('click', () => {
+        const fechaSeleccionada = date.dateset.date;
+        cargarHorarios(fechaSeleccionada);
+    });
+});
+
+const courtButtons = document.querySelectorAll('.court-button');
+courtButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        courtButtons.forEach(btn => btn.classList.remove('selected'));
+        button.classList.add('selected');
+    })
+})
+
+const today = new Date()
+const dates = document.querySelectorAll('.calendar__dates div');
+
+dates.forEach(Date => {
+    const selectedDate = new Date(data.dataset.date);
+    if(selectedDate < today){
+        date.classList.add('disabled');
+    }
+})
+
+fetch(`api/horarios/${fechaSeleccionada}`)
+    .then(response => response.json())
+    .then(data => {
+        const timeSlots = document.getElementById('time-slots');
+        timeSlots.innerHTML = '';
+        data.forEach(hora => {
+            timeSlots.innerHTML += `<button>${hora}</button>`;
+        });
+    });
+
+
+// Validación del formulario de cliente
+const form = document.querySelector('.client-data'); // Selecciona el formulario
+
+if (form) { // Asegúrate de que el formulario exista
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); // Previene el envío por defecto
+
+        // Captura los valores de los campos
+        const nombre = form.querySelector('input[name="nombre"]').value.trim();
+        const apellido = form.querySelector('input[name="apellido"]').value.trim();
+        const telefono = form.querySelector('input[name="telefono"]').value.trim();
+
+        // Expresión regular para validar el teléfono (10 dígitos)
+        const telefonoRegex = /^\d{10}$/;
+
+        // Validación de los campos
+        if (nombre === '') {
+            alert('Por favor, ingresa tu nombre.');
+        } else if (apellido === '') {
+            alert('Por favor, ingresa tu apellido.');
+        } else if (!telefonoRegex.test(telefono)) {
+            alert('Por favor, ingresa un número de teléfono válido (10 dígitos).');
+        } else {
+            // Si todo está correcto, envía el formulario
+            alert('Formulario enviado correctamente. ¡Gracias por tu reserva!');
+            form.submit(); // Envía el formulario
+        }
+    });
+}
