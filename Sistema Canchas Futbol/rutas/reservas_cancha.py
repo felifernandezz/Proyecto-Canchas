@@ -30,13 +30,7 @@ def realizar_reserva():
 
     return jsonify({"msg": "Reserva realizada con éxito", "token": token}), 201
 
-@reservas_cancha_bp.route('/horarios-disponibles', methods=['GET'])
-def horarios_disponibles():
-    from flask import Blueprint, jsonify, request
-from datetime import datetime, timedelta
 
-
-reservas_cancha_bp = Blueprint('reservas_cancha_bp', __name__)
 
 @reservas_cancha_bp.route('/horarios_disponibles', methods=['GET'])
 def obtener_horarios_disponibles():
