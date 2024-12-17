@@ -30,14 +30,4 @@ def mostrar_reservas():
 if __name__ == "__main__":
     app.run(debug=app.config['DEBUG'])
 
-
-#ejemplo de ruta para devolver horarios disponibles 
-@app.route('/api/horarios/<fecha>', methods=['GET'])
-def obtener_horarios(fecha):
-    #simula horarios ocupados y dispobiles. esto deberia conectarse con una base de horarios
-    horarios = ["10:00", "11:00", "12:00", "14:00", "15:00", "16:00"]
-    ocupados = ["11:00", "14:00"] #ejemplo de horarios ocupados
-    disponibles = [h for h in horarios if h not in ocupados]
-
-    #devuelve los horarios disponibles como JSON
-    return jsonify(disponibles)
+app = Flask(__name__, static_folder='static', template_folder='templates')
