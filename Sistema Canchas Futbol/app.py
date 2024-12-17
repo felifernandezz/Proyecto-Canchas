@@ -6,7 +6,7 @@ from rutas import main_bp
 from config import config  # Importar configuraciones desde config.py
 
 # Crear instancia de Flask
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 CORS(app)
 
 # Cargar configuración según el entorno
@@ -25,9 +25,8 @@ app.register_blueprint(main_bp)
 
 @app.route('/reservas', methods=['GET'])
 def mostrar_reservas():
-    return render_template('reservas.html')
+    return render_template('calendario_reserva.html')
 
 if __name__ == "__main__":
     app.run(debug=app.config['DEBUG'])
 
-app = Flask(__name__, static_folder='static', template_folder='templates')
