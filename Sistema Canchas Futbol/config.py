@@ -2,18 +2,20 @@ import os
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'clave_secreta_default')
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = os.getenv(
-        'DATABASE_URL',
-        'mysql://root:Bahiachivo124@127.0.0.1:3306/sistema_reservas'
-    )
+    MYSQL_HOST = os.getenv('MYSQL_HOST', '127.0.0.1')
+    MYSQL_USER = os.getenv('MYSQL_USER', 'root')
+    MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'Bahiachivo124')  # Cambia por tu contraseña
+    MYSQL_DB = os.getenv('MYSQL_DB', 'sistema_reservas')
 
 class ProductionConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+    MYSQL_HOST = os.getenv('MYSQL_HOST')
+    MYSQL_USER = os.getenv('MYSQL_USER')
+    MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
+    MYSQL_DB = os.getenv('MYSQL_DB')
 
 config = {
     'development': DevelopmentConfig,

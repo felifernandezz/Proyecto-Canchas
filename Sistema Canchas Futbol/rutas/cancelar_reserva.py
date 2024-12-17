@@ -1,18 +1,50 @@
 from flask import Blueprint, jsonify, request
-from extensiones import db
-from modelos.reserva import Reserva
 from datetime import datetime, timedelta
+from extensiones import obtener_conexion
 
 cancelar_reserva_bp = Blueprint('cancelar_reserva_bp', __name__)
 
 @cancelar_reserva_bp.route('/<int:reserva_id>', methods=['POST'])
 def cancelar_reserva(reserva_id):
-    reserva = Reserva.query.get_or_404(reserva_id)
-    limite_cancelacion = reserva.fecha_hora - timedelta(hours=6)
+    """
+    Permite cancelar una reserva si aún no está dentro de las próximas 6 horas.
+    """
+    try:
+        # Conexión a la base de datos
+        conexion = obtener_conexion()
+        cursor = conexion.cursor(dictionary=True)
 
-    if datetime.now() > limite_cancelacion:
-        return jsonify({"msg": "No podes cancelar una reserva dentro de las próximas 6 horas."}), 400
+        # Obtener información de la reserva
+        query_reserva = "SELECT fecha_hora, estado FROM reservas WHERE id = %s"
+        cursor.execute(query_reserva, (reserva_id,))
+        reserva = cursor.fetchone()
 
-    reserva.estado = 'cancelada'
-    db.session.commit()
-    return jsonify({"msg": "La reserva ha sido cancelada exitosamente."}), 200
+        # Si no se encuentra la reserva
+        if not reserva:
+            cursor.close()
+            conexion.close()
+            return jsonify({"msg": "Reserva no encontrada"}), 404
+
+        # Calcular el límite de cancelación
+        fecha_hora_reserva = reserva['fecha_hora']
+        limite_cancelacion = fecha_hora_reserva - timedelta(hours=6)
+
+        if datetime.now() > limite_cancelacion:
+            cursor.close()
+            conexion.close()
+            return jsonify({"msg": "No podes cancelar una reserva dentro de las próximas 6 horas."}), 400
+
+        # Actualizar el estado de la reserva a 'cancelada'
+        query_update = "UPDATE reservas SET estado = %s WHERE id = %s"
+        cursor.execute(query_update, ('cancelada', reserva_id))
+        conexion.commit()
+
+        # Cerrar conexiones
+        cursor.close()
+        conexion.close()
+
+        return jsonify({"msg": "La reserva ha sido cancelada exitosamente."}), 200
+
+    except Exception as e:
+        print(f"Error al cancelar la reserva: {e}")
+        return jsonify({"msg": "Error interno del servidor"}), 500
