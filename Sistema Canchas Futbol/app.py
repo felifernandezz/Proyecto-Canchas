@@ -1,3 +1,4 @@
+
 from flask_cors import CORS
 from flask import Flask, render_template, jsonify
 from extensiones import obtener_conexion, jwt  # Cambiar a obtener_conexion
@@ -5,7 +6,7 @@ from rutas import main_bp
 from config import config  # Importar configuraciones desde config.py
 
 # Crear instancia de Flask
-app = Flask(__name__, static_folder='static', template_folder='templates')
+app = Flask('_name_', static_folder='static', template_folder='templates')
 CORS(app)
 
 # Cargar configuración según el entorno
@@ -17,8 +18,11 @@ jwt.init_app(app)
 
 # Registrar blueprints
 app.register_blueprint(main_bp)
+@app.route('/')
+def home():
+    return render_template('index.html')  # Carga index.html
 
-@app.route('/reservas', methods=['GET'])
+@app.route('/reserva', methods=['GET'])
 def mostrar_reservas():
     return render_template('calendario_reserva.html')
 
@@ -35,5 +39,5 @@ def test_db():
     except Exception as e:
         return jsonify({"msg": "Error al conectar a la base de datos", "error": str(e)}), 500
 
-if __name__ == "__main__":
+if '_name_' == "_main_":
     app.run(debug=app.config['DEBUG'])
