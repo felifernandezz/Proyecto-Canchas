@@ -12,13 +12,18 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #11590e;
     color: rgb(255, 255, 255);
+    background-image: url(../Fotos/fondo_futbol_messi.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed ;
 }
 
 header {
-    background-color: #2c2c2c;
-    color: rgb(173, 125, 125);
+    background-color: #023201;
+    color: rgb(35, 206, 58);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,14 +40,12 @@ header .reservation-link {
     text-transform: uppercase;
     cursor: pointer;
     text-decoration: none;
-    color: #ffffff;
+    color: #13f369;
 }
 
 main {
-    background-image: url('fondo_futbol_main.jpg');
     background-size: cover; /*Hace que el fondo cubra toda la seccion*/
     background-position: center; 
-    background-repeat: no-repeat; /*evita que la imagen se repita*/
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 5%; /*Incrementa el relleno*/
@@ -53,7 +56,7 @@ main {
 .title {
     text-transform: uppercase;
     font-size: 36px;
-    color: #ffffff;
+    color: #13f369;
 }
 
 .left-section h1 {
@@ -63,12 +66,12 @@ main {
     padding: 5%;
     font-size: 4vw;
     font-weight: bold;
-    color: #000000;
+    color: #13f369;
 }
 
 .left-section .button {
-    background-color: #606060;
-    color: white;
+    background-color: #023201;
+    color: #13f369;
     padding: 2% 3%;
     border: none;
     text-align: left;
@@ -80,11 +83,11 @@ main {
 .left-section p {
     font-size: 3vw;
     font-weight: bold;
-    color: #ffffff;
+    color: #ebffe5;
 }
 
 .left-section .button:hover {
-    background-color: #505050;
+    background-color: #024401;
 }
 
 .right-section {
@@ -97,18 +100,97 @@ main {
     padding: 3%; /*Aniade un relleno alrededor de la imagen*/
 }
 
-img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+
+.horario {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding: 50px 0px;
+    background-color: #023201;
 }
 
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 3%;
+.horario-info h2 {
+    font-size: 65px;
+    color: #ebffe5;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+
+.horario-txt {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.txt {
+    color: #ebffe5;
+}
+
+.txt h4 {
+    font-size: 18px;
+    color: #a8ff94;
+    margin-bottom: 30px;
+}
+
+.txt p {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.socials {
+    display: flex;
+}
+
+.social {
+    margin: 0 10px;
+    height: 40px;
+    width: 40px;
+    border: 1px solid;
+    border-radius: 50%;
+}
+
+.social:hover {
+    background-color: #13f369;
+}
+
+.social img {
+    margin: 8px 0 0 10px;
+}
+
+.map {
+    filter: grayscale(100) invert(92%) contrast(93%);
+}
+
+.footer {
+    padding: 100px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links h4 {
+    color: #ebffe5;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.links ul li a {
+    color: #ebffe5;
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+
+.footer {
+    padding: 100px 0px;
+    display: flex;
+    margin-bottom: 25px;
+    background-color: #023201;
     margin-top: auto;
+    margin-bottom: auto;
+    justify-content: space-around;
 }
 
 .footer-content {
@@ -119,13 +201,13 @@ footer {
 
 .footer-left,
 .footer-right {
-    background-color: #a0a0a0;
+    background-color: #13f369;
     padding: 10px;
 }
 
-.footer-left .logo {
-    width: 10%;
-    height: auto;
-    background-color: #606060;
-    margin-bottom: 5%;
+@media (max-width: 768px) {
+    body{
+        background-position: top center;
+        background-size: contain;
+    }
 }
