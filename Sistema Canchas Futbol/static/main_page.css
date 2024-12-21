@@ -1,14 +1,13 @@
-
 .rubik-distressed-regular {
     font-family: "Rubik Distressed", system-ui;
     font-weight: 400;
     font-style: normal;
-  }
-
+}
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -17,8 +16,8 @@ body {
     background-image: url(../Fotos/fondo_futbol_messi.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center;
-    background-attachment: fixed ;
+    background-position: center;
+
 }
 
 header {
@@ -44,18 +43,17 @@ header .reservation-link {
 }
 
 main {
-    background-size: cover; /*Hace que el fondo cubra toda la seccion*/
-    background-position: center; 
+    background-size: cover;
+    background-position: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 5%; /*Incrementa el relleno*/
-    gap: 20%; /*Incrementa el espacio entre columnas*/
-    /* border-radius: 10px; Redondea las esquinas*/
+    padding: 5%;
+    gap: 20%;
 }
 
 .title {
     text-transform: uppercase;
-    font-size: 36px;
+    font-size: 55px;
     color: #13f369;
 }
 
@@ -69,16 +67,6 @@ main {
     color: #13f369;
 }
 
-.left-section .button {
-    background-color: #023201;
-    color: #13f369;
-    padding: 2% 3%;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    font-size: 1.5vw;
-    width: fit-content;
-}
 
 .left-section p {
     font-size: 3vw;
@@ -96,63 +84,80 @@ main {
     align-items: center;
     background-color: #5f5a5a;
     width: 100%;
-    height: auto; /*ajusta dinamicamente la altura*/
-    padding: 3%; /*Aniade un relleno alrededor de la imagen*/
+    height: auto;
+    padding: 3%;
 }
-
 
 .horario {
     display: flex;
-    text-align: center;
     justify-content: center;
-    padding: 50px 0px;
+    align-items: center;
+    text-align: center;
+    padding: 50px 0;
     background-color: #023201;
 }
 
+.horario-info {
+    width: 90%;
+    max-width: 1200px;
+}
+
 .horario-info h2 {
-    font-size: 65px;
+    font-size: 3rem;
     color: #ebffe5;
-    font-weight: 800;
-    text-transform: uppercase;
-    margin-bottom: 50px;
-}
-
-.horario-txt {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.txt {
-    color: #ebffe5;
-}
-
-.txt h4 {
-    font-size: 18px;
-    color: #a8ff94;
+    font-weight: bold;
     margin-bottom: 30px;
 }
 
+.horario-txt {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.txt {
+    background-color: #024401;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    color: #ebffe5;
+    text-align: left;
+}
+
+.txt h4 {
+    font-size: 1.5rem;
+    color: #a8ff94;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 .txt p {
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: 600;
-    margin-bottom: 15px;
+    font-size: 1rem;
+    margin: 5px 0;
+    line-height: 1.6;
+    text-align: center;
 }
 
 .socials {
     display: flex;
+    gap: 10px;
+    justify-content: center;
 }
 
-.social {
-    margin: 0 10px;
-    height: 40px;
-    width: 40px;
-    border: 1px solid;
-    border-radius: 50%;
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
 }
 
-.social:hover {
-    background-color: #13f369;
+.social-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
 }
 
 .social img {
@@ -161,53 +166,98 @@ main {
 
 .map {
     filter: grayscale(100) invert(92%) contrast(93%);
+    display: block;
 }
 
 .footer {
-    padding: 100px 0px;
+    background-color: #023201;
+    color: #ebffe5;
+    padding: 20px 0;
     display: flex;
     justify-content: space-between;
 }
 
-.links h4 {
-    color: #ebffe5;
-    text-transform: uppercase;
-    margin-bottom: 25px;
-}
-
-.links ul li a {
-    color: #ebffe5;
-    font-size: 16px;
-    margin-bottom: 5px;
-    display: inline-block;
-}
-
-
-.footer {
-    padding: 100px 0px;
-    display: flex;
-    margin-bottom: 25px;
-    background-color: #023201;
-    margin-top: auto;
-    margin-bottom: auto;
-    justify-content: space-around;
-}
-
 .footer-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #023201;
+    padding: 20px;
+    color: white;
 }
 
-.footer-left,
-.footer-right {
-    background-color: #13f369;
-    padding: 10px;
+
+.footer-left .pelota {
+    width: 80px;
+    height: auto;
 }
+
+
+.footer-right .seguinos {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.footer-right .redes {
+    margin-top: 10px;
+}
+
+.footer-right .redes a {
+    margin: 0 5px;
+}
+
+.footer-right .redes img {
+    width: 30px;
+    height: auto;
+    vertical-align: middle;
+}
+
+.footer-right .redes a:hover img {
+    opacity: 0.8;
+}
+
+.res_cancha, .res_cumpl {
+    background-color: #023201;
+    color: #13f369;
+    padding: 2% 3%;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 1.5vw;
+    width: fit-content;
+}
+
+
 
 @media (max-width: 768px) {
-    body{
+    body {
         background-position: top center;
         background-size: contain;
     }
+
+    .horario-txt {
+        grid-template-columns: 1fr;
+    }
+
+    .txt h4 {
+        font-size: 1.25rem;
+        text-align: center;
+    }
+
+    .txt p {
+        font-size: 0.9rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-logo,
+    .footer-socials {
+        margin-bottom: 10px;
+    }
+
+   
 }
