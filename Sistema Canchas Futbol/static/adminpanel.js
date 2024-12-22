@@ -1,8 +1,30 @@
 import axios from "axios";
 
+// Esta función obtiene el token de autenticación del almacenamiento local o de los headers
+const obtenerToken = () => localStorage.getItem("jwt_token");
+
 document.addEventListener("DOMContentLoaded", () => {
     const canchaList = document.getElementById("cancha-list");
     const form = document.getElementById("admin-form");
+
+    // Verifica si el usuario es administrador antes de permitir el acceso
+    const verificarAccesoAdmin = async () => {
+        try {
+            const token = obtenerToken();
+            const response = await axios.get("/api/verificar-admin", {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            // Si el usuario es admin, continúa con el flujo normal
+            if (response.data.rol !== "admin") {
+                window.location.href = "/"; // Redirige si no es admin
+            } else {
+                fetchCanchas(); // Obtiene las canchas solo si es admin
+            }
+        } catch (error) {
+            console.error("Error de verificación de acceso:", error);
+            window.location.href = "/"; // Redirige si hay error
+        }
+    };
 
     const fetchCanchas = async () => {
         try {
@@ -66,5 +88,5 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     form.addEventListener("submit", saveCancha);
-    fetchCanchas();
+    verificarAccesoAdmin(); // Verifica el acceso al panel
 });
