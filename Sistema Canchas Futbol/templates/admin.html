@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <header>
+        <h1>Panel de Administración de Canchas</h1>
+    </header>
+
+    <main>
+        <section class="cancha-section">
+            <h2>Lista de Canchas</h2>
+            <ul id="cancha-list" class="cancha-list"></ul>
+        </section>
+
+        <section class="form-section">
+            <h2>Agregar / Editar Cancha</h2>
+            <form id="admin-form" class="admin-form">
+                <input type="hidden" name="id">
+                <div class="form-group">
+                    <label for="tipo_cancha">Tipo de Cancha</label>
+                    <input type="text" name="tipo_cancha" id="tipo_cancha" placeholder="Ej: Fútbol 5" required>
+                </div>
+                <div class="form-group">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" name="cantidad" id="cantidad" placeholder="Ej: 5" required>
+                </div>
+                <button type="submit" class="btn">Guardar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Sistema de Reservas</p>
+    </footer>
+
+    <script src="adminpanel.js"></script>
+</body>
+</html>
