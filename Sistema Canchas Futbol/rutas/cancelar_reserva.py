@@ -48,3 +48,33 @@ def cancelar_reserva(reserva_id):
     except Exception as e:
         print(f"Error al cancelar la reserva: {e}")
         return jsonify({"msg": "Error interno del servidor"}), 500
+
+@cancelar_reserva_bp.route('/reservas', methods=['GET'])
+def ver_reservas():
+    """
+    Permite obtener todas las reservas registradas.
+    """
+    try:
+        # Conexión a la base de datos
+        conexion = obtener_conexion()
+        cursor = conexion.cursor(dictionary=True)
+
+        # Consultar todas las reservas
+        query_reservas = """
+        SELECT r.id, r.fecha_hora, r.estado, u.nombre AS cliente, u.telefono, c.tipo_cancha
+        FROM reservas r
+        JOIN usuarios u ON r.user_id = u.id
+        JOIN canchas c ON r.cancha_id = c.id
+        """
+        cursor.execute(query_reservas)
+        reservas = cursor.fetchall()
+
+        # Cerrar conexiones
+        cursor.close()
+        conexion.close()
+
+        return jsonify(reservas), 200
+
+    except Exception as e:
+        print(f"Error al obtener reservas: {e}")
+        return jsonify({"msg": "Error interno del servidor"}), 500
