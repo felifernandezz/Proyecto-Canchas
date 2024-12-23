@@ -16,7 +16,7 @@
     <header>
         <div class="menu">☰</div>
         <div class="title rubik-distressed-regular">Complejo Deportivo</div>
-        <a href="calendario_reserva.html" class="reservation-link">Hacer Reserva</a>
+        <a href="{{ url_for('mostrar_reservas') }}" class="reservation-link">Hacer Reserva</a>
     </header>
 
     <main>
@@ -24,9 +24,9 @@
             <h1>¡Jugá en nuestras canchas!</h1>
             <div>
                 <p>Hacé tu reserva ahora:</p>
-                <a href="calendario_reserva.html">
+                <a href="{{ url_for('mostrar_reservas') }}">
                     <button class="res_cancha">Reservar Cancha</button>
-                </a>
+                </a>                
             </div>
             <div>
                 <p>Festejá tu cumpleaños con nosotros:</p>
