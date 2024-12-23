@@ -39,5 +39,5 @@ def test_db():
     except Exception as e:
         return jsonify({"msg": "Error al conectar a la base de datos", "error": str(e)}), 500
 
-if '_name_' == "_main_":
+if __name__ == "_main_":
     app.run(debug=app.config['DEBUG'])
