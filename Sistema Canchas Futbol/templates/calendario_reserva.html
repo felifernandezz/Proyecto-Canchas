@@ -15,7 +15,8 @@
   <main class="container">
     <h1>Haz tu reserva</h1>
 
-    <div id="popup" class="popup hideen">
+    <!-- Cambiar "hideen" por "hidden" -->
+    <div id="popup" class="popup hidden">
       <div class="popup-content">
         <h3>Selecciona un horario</h3>
         <div id="time-slots" class="time-slots"></div>
@@ -26,18 +27,18 @@
     <section class="step">
       <h2>1. Selecciona el tipo de cancha</h2>
       <div class="court-selection">
-        <button class="court-button">5</button>
-        <button class="court-button">7</button>
-        <button class="court-button">8</button>
-        <button class="court-button">9</button>
-        <button class="court-button">11</button>
+        <!-- Añadir data-court-id a los botones -->
+        <button class="court-button" data-court-id="5">5</button>
+        <button class="court-button" data-court-id="7">7</button>
+        <button class="court-button" data-court-id="8">8</button>
+        <button class="court-button" data-court-id="9">9</button>
+        <button class="court-button" data-court-id="11">11</button>
       </div>
     </section>
 
     <section class="step">
       <h2>2. Selecciona la fecha</h2>
       <div class="calendar">
-        <!-- Calendar here -->
         <div class="calendar__info">
           <div class="calendar__prev" id="prev-month">&#9664;</div>
           <div class="calendar__month" id="month"></div>
@@ -53,21 +54,27 @@
           <div class="calendar__day">Sab</div>
           <div class="calendar__day">Dom</div>
         </div>
-        <div class="calendar__dates" id="dates"></div>
+        <!-- Asegurar que las fechas tengan atributos data-date -->
+        <div class="calendar__dates" id="dates">
+          <!-- Ejemplo de cómo se generará dinámicamente:
+          <div class="calendar__date" data-date="2024-12-01">1</div>
+          -->
+        </div>
       </div>
     </section>
 
     <section class="step">
       <h2>3. Ingresa tus datos</h2>
       <form class="client-data">
-        <input type="text" placeholder="Nombre">
-        <input type="text" placeholder="Apellido">
-        <input type="tel" placeholder="Teléfono">
+        <!-- Añadir name a los inputs -->
+        <input type="text" name="nombre" placeholder="Nombre">
+        <input type="text" name="apellido" placeholder="Apellido">
+        <input type="tel" name="telefono" placeholder="Teléfono">
         <button type="submit">Enviar</button>
       </form>
     </section>
   </main>
 
-  <script src="../static/Calendario.js"></script>
+  <script src="../static/calendario.js"></script>
 </body>
 </html>
