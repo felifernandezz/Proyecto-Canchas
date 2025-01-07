@@ -40,6 +40,14 @@ def actualizar_cancha(cancha_id):
         data = request.get_json()
         nuevo_tipo_cancha = data.get('tipo_cancha')
         nueva_cantidad = data.get('cantidad')
+        nuevo_precio = data.get('precio')
+
+        # Validar los datos proporcionados
+        if not nuevo_tipo_cancha or nueva_cantidad is None or nuevo_precio is None:
+            return jsonify({"msg": "Datos incompletos: se requiere tipo_cancha, cantidad y precio."}), 400
+
+        if nueva_cantidad < 0 or nuevo_precio < 0:
+            return jsonify({"msg": "Cantidad y precio no pueden ser negativos."}), 400
 
         # Conexión a la base de datos
         conexion = obtener_conexion()
@@ -57,10 +65,10 @@ def actualizar_cancha(cancha_id):
         # Actualizar la cancha
         query = """
             UPDATE canchas 
-            SET tipo_cancha = %s, cantidad = %s 
+            SET tipo_cancha = %s, cantidad = %s, precio = %s
             WHERE id = %s
         """
-        cursor.execute(query, (nuevo_tipo_cancha, nueva_cantidad, cancha_id))
+        cursor.execute(query, (nuevo_tipo_cancha, nueva_cantidad, nuevo_precio, cancha_id))
         conexion.commit()
 
         cursor.close()
