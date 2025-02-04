@@ -1,13 +1,14 @@
 
 from flask_cors import CORS
 from flask import Flask, render_template, jsonify
-from extensiones import obtener_conexion, jwt  # Cambiar a obtener_conexion
+from extensiones import obtener_conexion, jwt  
 from rutas import main_bp
 from config import config  # Importar configuraciones desde config.py
 
 # Crear instancia de Flask
 app = Flask('_name_', static_folder='static', template_folder='templates')
 CORS(app)
+app.secret_key = "advpjsh"
 
 # Cargar configuración según el entorno
 env = 'development'  # Cambiar a 'production' en producción
