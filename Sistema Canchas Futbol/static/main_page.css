@@ -1,18 +1,34 @@
-.rubik-distressed-regular {
-    font-family: "Rubik Distressed", system-ui;
-    font-weight: 400;
-    font-style: normal;
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Distressed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
+
+
+:root {
+    --color-primario: #00642b;
+    --color-secundario: #023201;
+    --color-terciario: #13f369;
+    --color-texto: #ebffe5;
+    --fuente-principal: Arial, Helvetica, sans-serif;
+    --fuente-secundaria: "Rubik Distressed", system-ui;
+    --fuente-terciaria: "Londrina Solid", serif;
+    --fuente-cuarta:  "Archivo Black", serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
+    font-family: var(--fuente-principal);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #11590e;
-    color: rgb(255, 255, 255);
+    background-color: var(--color-primario);
+    color: var(--color-texto);
     background-image: url(../Fotos/fondo_futbol_messi.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -21,11 +37,11 @@ body {
 }
 
 header {
-    background-color: #023201;
-    color: rgb(35, 206, 58);
+    background-color: var(--color-secundario);
+    color: var(--color-terciario);
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: center;
     padding: 2% 5%;
 }
 
@@ -34,12 +50,19 @@ header .menu {
     cursor: pointer;
 }
 
+header .title {
+    font-family: "Permanent Marker", serif;
+}
+
 header .reservation-link {
     font-size: 1vw;
     text-transform: uppercase;
     cursor: pointer;
     text-decoration: none;
-    color: #13f369;
+    color: var(--color-terciario);
+    border: 2px solid var(--color-terciario);
+    border-radius: 15px;
+    padding:  5px 10px;
 }
 
 main {
@@ -54,28 +77,40 @@ main {
 .title {
     text-transform: uppercase;
     font-size: 55px;
-    color: #13f369;
+    color: var(--color-terciario);
 }
 
+.left-section {
+    padding: 1.5rem;
+}
+
+
 .left-section h1 {
-    display: flex;
-    flex-direction: column;
-    gap: 5%;
-    padding: 5%;
+    font-family: var(--fuente-terciaria);
     font-size: 4vw;
     font-weight: bold;
-    color: #13f369;
+    color: var(--color-terciario);
 }
 
 
 .left-section p {
     font-size: 3vw;
     font-weight: bold;
-    color: #ebffe5;
+    color: var(--color-texto);
+    padding: 1.5rem;
+}
+
+
+.res_cancha {
+    font-family: var(--fuente-cuarta);
+}
+
+.res_cumpl { 
+    font-family: var(--fuente-cuarta);
 }
 
 .left-section .button:hover {
-    background-color: #024401;
+    background-color: var(--color-secundario);
 }
 
 .right-section {
@@ -94,7 +129,7 @@ main {
     align-items: center;
     text-align: center;
     padding: 50px 0;
-    background-color: #023201;
+    background-color: var(--color-secundario);
 }
 
 .horario-info {
@@ -104,7 +139,7 @@ main {
 
 .horario-info h2 {
     font-size: 3rem;
-    color: #ebffe5;
+    color: var(--color-texto);
     font-weight: bold;
     margin-bottom: 30px;
 }
@@ -116,17 +151,17 @@ main {
 }
 
 .txt {
-    background-color: #024401;
+    background-color: var(--color-secundario);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    color: #ebffe5;
+    color: var(--color-texto);
     text-align: left;
 }
 
 .txt h4 {
     font-size: 1.5rem;
-    color: #a8ff94;
+    color: var(--color-terciario);
     margin-bottom: 10px;
     text-align: center;
 }
@@ -170,8 +205,8 @@ main {
 }
 
 .footer {
-    background-color: #023201;
-    color: #ebffe5;
+    background-color: var(--color-secundario);
+    color: var(--color-texto);
     padding: 20px 0;
     display: flex;
     justify-content: space-between;
@@ -181,15 +216,22 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #023201;
+    background-color: var(--color-secundario);
     padding: 20px;
-    color: white;
+    color: var(--color-texto);
 }
 
 
 .footer-left .pelota {
     width: 80px;
     height: auto;
+}
+
+.footer-left .login { 
+    display: flex;
+    text-decoration: none;
+    color: var(--color-texto);
+    
 }
 
 
@@ -218,8 +260,8 @@ main {
 }
 
 .res_cancha, .res_cumpl {
-    background-color: #023201;
-    color: #13f369;
+    background-color: var(--color-secundario);
+    color: var(--color-terciario);
     padding: 2% 3%;
     border: none;
     text-align: left;
@@ -229,35 +271,69 @@ main {
 }
 
 
+@media (max-width: 1200px) {
 
-@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .reservation-link { 
+        width: 15%;
+
+    }
+
+
     body {
-        background-position: top center;
-        background-size: contain;
+        background-position: center;
+        background-size: cover;
+    }
+
+
+    .left-section {
+        width: 100%;
+        text-align: center;
+    }
+
+    .left-section h1 {
+        font-size: 3rem;
+    }
+
+    .left-section p {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .res_cancha, .res_cumpl {
+        width: 80%;
+        text-align: center;
+        font-size: 1rem;
     }
 
     .horario-txt {
         grid-template-columns: 1fr;
     }
 
-    .txt h4 {
-        font-size: 1.25rem;
-        text-align: center;
+    .horario-info h2 {
+        font-size: 5vw;
     }
 
-    .txt p {
-        font-size: 0.9rem;
-    }
 
-    .footer-content {
+    .footer {
         flex-direction: column;
         text-align: center;
     }
 
-    .footer-logo,
-    .footer-socials {
-        margin-bottom: 10px;
+    .footer .login {
+        text-align: center;
+        flex-direction: column;
+        font-size: 1.5rem;
+        padding: 10px;
+        text-decoration: solid;
+        border: 2px solid;
+        border-radius: 8%;
+        color: var(--color-terciario);
+
     }
 
-   
 }

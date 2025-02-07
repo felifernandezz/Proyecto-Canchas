@@ -1,80 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../static/calendario_reserva.css">
-  <title>Reserva de Cancha</title>
-</head>
-<body>
-  <header class="header">
-    <div class="menu-icon">&#9776;</div>
-    <div class="make-reservation">Hace tu reserva</div>
-  </header>
-
-  <main class="container">
-    <h1>Haz tu reserva</h1>
-
-    <!-- Cambiar "hideen" por "hidden" -->
-    <div id="popup" class="popup hidden">
-      <div class="popup-content">
-        <h3>Selecciona un horario</h3>
-        <div id="time-slots" class="time-slots"></div>
-        <button id="close-popup" class="close-popup">Cerrar</button>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../static/calendario_reserva.css" />
+    <title>Hace tu reserva</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <div class="calendar">
+          <div class="month">
+            <i class="fas fa-angle-left prev"></i>
+            <div class="date">Enero 2025</div>
+            <i class="fas fa-angle-right next"></i>
+          </div>
+          <div class="weekdays">
+            <div>Dom</div>
+            <div>Lun</div>
+            <div>Mar</div>
+            <div>Mie</div>
+            <div>Jue</div>
+            <div>Vie</div>
+            <div>Sab</div>
+          </div>
+          <div class="days"></div>
+          <div class="goto-today">
+            <div class="goto">
+              <input type="text" placeholder="Dia/Año" class="date-input" />
+              <button class="goto-btn">Go</button>
+            </div>
+            <button class="today-btn">Hoy</button>
+          </div>
+        </div>
       </div>
+      <div class="right">
+        <div class="today-date">
+          <div class="event-day">Lun</div>
+          <div class="event-date">27 de Enero de 2025</div>
+        </div>
+        <div class="events"></div>
+        <div class="add-event-wrapper">
+          <div class="add-event-header">
+            <div class="title">Añadir reserva</div>
+            <i class="fas fa-times close"></i>
+          </div>
+          <div class="add-event-body">
+            <div class="add-event-input">
+              <input type="text" placeholder="Nombre" class="event-name" />
+            </div>
+            <div class="add-event-input">
+              <input
+                type="text"
+                placeholder="Hora del partido"
+                class="event-time-from"
+              />
+            </div>
+            <div class="add-event-input">
+              <input
+                type="text"
+                placeholder="Cancha"
+                class="event-time-to"
+              />
+            </div>
+          </div>
+          <div class="add-event-footer">
+            <button class="add-event-btn">Añadir</button>
+          </div>
+        </div>
+      </div>
+      <button class="add-event">
+        <i class="fas fa-plus"></i>
+      </button>
     </div>
-
-    <section class="step">
-      <h2>1. Selecciona el tipo de cancha</h2>
-      <div class="court-selection">
-        <!-- Añadir data-court-id a los botones -->
-        <button class="court-button" data-court-id="5">5</button>
-        <button class="court-button" data-court-id="7">7</button>
-        <button class="court-button" data-court-id="8">8</button>
-        <button class="court-button" data-court-id="9">9</button>
-        <button class="court-button" data-court-id="11">11</button>
-      </div>
-    </section>
-
-    <section class="step">
-      <h2>2. Selecciona la fecha</h2>
-      <div class="calendar">
-        <div class="calendar__info">
-          <div class="calendar__prev" id="prev-month">&#9664;</div>
-          <div class="calendar__month" id="month"></div>
-          <div class="calendar__year" id="year"></div>
-          <div class="calendar__next" id="next-month">&#9654;</div>
-        </div>
-        <div class="calendar__week">
-          <div class="calendar__day">Lun</div>
-          <div class="calendar__day">Mar</div>
-          <div class="calendar__day">Mie</div>
-          <div class="calendar__day">Jue</div>
-          <div class="calendar__day">Vie</div>
-          <div class="calendar__day">Sab</div>
-          <div class="calendar__day">Dom</div>
-        </div>
-        <!-- Asegurar que las fechas tengan atributos data-date -->
-        <div class="calendar__dates" id="dates">
-          <!-- Ejemplo de cómo se generará dinámicamente:
-          <div class="calendar__date" data-date="2024-12-01">1</div>
-          -->
-        </div>
-      </div>
-    </section>
-
-    <section class="step">
-      <h2>3. Ingresa tus datos</h2>
-      <form class="client-data">
-        <!-- Añadir name a los inputs -->
-        <input type="text" name="nombre" placeholder="Nombre">
-        <input type="text" name="apellido" placeholder="Apellido">
-        <input type="tel" name="telefono" placeholder="Teléfono">
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
-  </main>
-
-  <script src="../static/calendario.js"></script>
-</body>
+    <script src="../static/Calendario.js"></script>
+  </body>
 </html>
